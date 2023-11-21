@@ -5,7 +5,7 @@ import { getFile } from './routes/file/get_file';
 import { uploadFile } from './routes/file/upload_file';
 import { database } from './db';
 import { responseForger } from './utils/request';
-
+require('dotenv').config()
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use((req, _, next) => {
 
 app.use((req, res, next) => {
   const forge = responseForger(res);
-  const [username, password] = Buffer.from(req.headers.authorization ?? '', "base64").toString().split(':');
+  const [username, password] = Buffer.from((req.headers.authorization ?? '').replace(/^Basic /, ""), "base64").toString().split(':');
 
   if (username == undefined || password == undefined) {
     return void forge(401);

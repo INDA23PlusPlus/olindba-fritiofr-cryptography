@@ -29,6 +29,14 @@ export function database() {
         })
       });
     },
+    get: async (name: string): Promise<{ name: string, path: string } | null> => {
+      const file = await new Promise<{ name: string, path: string }>((resolve, reject) => {
+        db.get(`SELECT * FROM files WHERE name = ?`, [name], (err, row) => {
+          if (err) { reject() } else { resolve(row as any ?? null) }
+        })
+      });
+      return file;
+    },
     rm: async (name: string) => {
       await new Promise<void>((resolve, reject) => {
         db.run(`DELETE FROM files WHERE name = ?`, [name], (err) => {
