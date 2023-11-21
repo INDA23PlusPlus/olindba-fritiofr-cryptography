@@ -1,0 +1,15 @@
+[package]
+name = "olindba-fritiofr-cryptography"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.11.22", features = ["json"] }
+base64 = "0.21.5"
+orion = "0.17.6"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+dotenv = "0.15.0"
+serde = "1.0.193"
+serde_json = "1.0.108"
